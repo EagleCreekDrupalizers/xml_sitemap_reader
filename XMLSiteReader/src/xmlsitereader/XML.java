@@ -21,7 +21,7 @@ public class XML {
     private static int sumOtherItems = 0;
     private int sumTotal = 0;
     public String fileName;
-      
+    private static int rootIdentifier = 0;
     public XML(String fName) {
         fileName = fName;
     }
@@ -55,7 +55,8 @@ public class XML {
                             || newNode.getTextContent().toLowerCase().endsWith(".htm")
                             || newNode.getTextContent().toLowerCase().endsWith(".asp")
                             || newNode.getTextContent().toLowerCase().endsWith(".jsp")
-                            || newNode.getTextContent().toLowerCase().endsWith(".php")) {
+                            || newNode.getTextContent().toLowerCase().endsWith(".php")
+                            || newNode.getTextContent().toLowerCase().endsWith(".htm")) {
                         sumPages++;
                     } else if (newNode.getTextContent().toLowerCase().endsWith(".doc")
                             || newNode.getTextContent().toLowerCase().endsWith(".pdf")
@@ -67,8 +68,11 @@ public class XML {
                             || newNode.getTextContent().toLowerCase().endsWith(".xls")
                             || newNode.getTextContent().toLowerCase().endsWith(".xlsx")) {
                         sumDocuments++;
+                    } else if (newNode.getTextContent().contains("")){
+                        rootIdentifier++;
                     } else {
-                        System.out.println(newNode.getFirstChild().getTextContent() + "<--------------------------------------------------------------------"
+                        System.out.println(newNode.getFirstChild().getTextContent() 
+                                + "<--------------------------------------------------------------------"
                                 + "   ********this might be a null object or something we cannot parse yet ********* ");
                         sumOtherItems++;                       
                     }
@@ -89,6 +93,7 @@ public class XML {
         System.out.println("Number of pages: " + sumPages);
         System.out.println("Number of documents: " + sumDocuments);
         System.out.println("Number of other items: " + sumOtherItems);
+        System.out.println("Root identifiers: " + rootIdentifier);
         System.out.println("Total number of elements: " + calculateResults());
     }
 }

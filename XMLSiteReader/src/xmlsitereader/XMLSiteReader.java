@@ -11,7 +11,8 @@ import java.io.FileNotFoundException;
 public class XMLSiteReader {
 
     public static void main(String[] args) throws FileNotFoundException {
-        XML newXML = new XML();
+        String fileName = "placeHolder";
+        XML newXML = new XML(fileName);
         newXML.parseXML();
         newXML.printResults();     
     }    

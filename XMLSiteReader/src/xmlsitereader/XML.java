@@ -20,15 +20,25 @@ public class XML {
     private static int sumDocuments = 0;
     private static int sumOtherItems = 0;
     private int sumTotal = 0;
+    public String fileName;
       
-    public XML() {
+    public XML(String fName) {
+        fileName = fName;
     }
 
+    private void setFileName(String fName) {
+        fileName = fName;
+    }
+    
+    public String getFileName() {
+        return fileName;
+    }
+   
     public void parseXML() throws FileNotFoundException {
 
         try {
             
-            File newFile = new File("sitemap.xml");
+            File newFile = new File("4.xml");
             DocumentBuilderFactory newDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder newBuilder = newDocumentBuilderFactory.newDocumentBuilder();
             Document doc = newBuilder.parse(newFile);
@@ -41,20 +51,29 @@ public class XML {
             for (int i = 0; i < nodeList.getLength(); i++) {
                 Node newNode = nodeList.item(i);
                 if (newNode.getChildNodes().toString().contains("loc")) {
-                    if (newNode.getTextContent().endsWith(".html")
-                            || newNode.getTextContent().endsWith(".htm")
-                            || newNode.getTextContent().endsWith(".asp")
-                            || newNode.getTextContent().endsWith(".jsp")
-                            || newNode.getTextContent().endsWith(".php")) {
+                    if (newNode.getTextContent().toLowerCase().endsWith(".html")
+                            || newNode.getTextContent().toLowerCase().endsWith(".htm")
+                            || newNode.getTextContent().toLowerCase().endsWith(".asp")
+                            || newNode.getTextContent().toLowerCase().endsWith(".jsp")
+                            || newNode.getTextContent().toLowerCase().endsWith(".php")) {
                         sumPages++;
-                    } else if (newNode.getTextContent().endsWith(".doc")
-                            || newNode.getTextContent().endsWith(".pdf")
-                            || newNode.getTextContent().endsWith(".docx")) {
+                    } else if (newNode.getTextContent().toLowerCase().endsWith(".doc")
+                            || newNode.getTextContent().toLowerCase().endsWith(".pdf")
+                            || newNode.getTextContent().toLowerCase().endsWith(".docx")
+                            || newNode.getTextContent().toLowerCase().endsWith(".txt")
+                            || newNode.getTextContent().toLowerCase().endsWith(".odt")
+                            || newNode.getTextContent().toLowerCase().endsWith(".odg")
+                            || newNode.getTextContent().toLowerCase().endsWith(".csv")
+                            || newNode.getTextContent().toLowerCase().endsWith(".xls")
+                            || newNode.getTextContent().toLowerCase().endsWith(".xlsx")) {
                         sumDocuments++;
                     } else {
-                        sumOtherItems++;
+                        System.out.println(newNode.getFirstChild().getTextContent() + "<--------------------------------------------------------------------"
+                                + "   ********this might be a null object or something we cannot parse yet ********* ");
+                        sumOtherItems++;                       
                     }
-                }
+                }                
+                
                 System.out.println(newNode.getTextContent());
             }
         } catch (Exception e) {

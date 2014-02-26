@@ -38,8 +38,8 @@ public class XML {
 
             System.out.println("Base element :" + doc.getDocumentElement().getNodeName());
 
-            for (int temp = 0; temp < nodeList.getLength(); temp++) {
-                Node newNode = nodeList.item(temp);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node newNode = nodeList.item(i);
                 if (newNode.getChildNodes().toString().contains("loc")) {
                     if (newNode.getTextContent().endsWith(".html")
                             || newNode.getTextContent().endsWith(".htm")

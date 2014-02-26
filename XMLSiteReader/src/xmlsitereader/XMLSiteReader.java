@@ -1,10 +1,12 @@
 package xmlsitereader;
 
 import java.io.FileNotFoundException;
-
 /**
  *
- * @author spaden
+ ** @author Stephen Paden 
+ ** Company: Eagle Creek Software Services 
+ ** Date: 2/26/2014
+ *
  */
 public class XMLSiteReader {
 

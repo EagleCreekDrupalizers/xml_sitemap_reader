@@ -1,6 +1,5 @@
 package xmlsitereader;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import javax.xml.parsers.DocumentBuilder;
@@ -11,26 +10,24 @@ import org.w3c.dom.NodeList;
 
 /**
  *
- ** @author Stephen Paden Company: 
- ** Eagle Creek Software Services 
+ ** @author Stephen Paden 
+ ** Company: Eagle Creek Software Services 
  ** Date: 2/26/2014
  *
  */
 public class XML {
-
     private static int sumPages = 0;
     private static int sumDocuments = 0;
     private static int sumOtherItems = 0;
     private int sumTotal = 0;
-    public BufferedReader newBufferedWriter = null;
-  
+      
     public XML() {
     }
 
     public void parseXML() throws FileNotFoundException {
 
         try {
-
+            
             File fXmlFile = new File("sitemap.xml");
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -59,7 +56,6 @@ public class XML {
                     }
                 }
                 System.out.println(nNode.getTextContent());
-
             }
         } catch (Exception e) {
             System.out.println(e);

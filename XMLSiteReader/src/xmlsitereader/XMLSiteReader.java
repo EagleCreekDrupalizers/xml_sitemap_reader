@@ -13,6 +13,7 @@ public class XMLSiteReader {
     public static void main(String[] args) throws FileNotFoundException {
         String fileName = "placeHolder";
         XML newXML = new XML(fileName);
+        newXML.setFileName(fileName);
         newXML.parseXML();
         newXML.printResults();     
     }    

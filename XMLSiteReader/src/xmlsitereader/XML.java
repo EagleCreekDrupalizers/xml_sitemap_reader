@@ -15,18 +15,19 @@ import org.w3c.dom.NodeList;
  ** Date: 2/26/2014
  *
  */
+
 public class XML {
     private static int sumPages = 0;
     private static int sumDocuments = 0;
     private static int sumOtherItems = 0;
     private int sumTotal = 0;
     public String fileName;
-    private static int rootIdentifier = 0;
+    private static int dynamicPaths = 0;
     public XML(String fName) {
         fileName = fName;
     }
 
-    private void setFileName(String fName) {
+    public void setFileName(String fName) {
         fileName = fName;
     }
     
@@ -38,7 +39,7 @@ public class XML {
 
         try {
             
-            File newFile = new File("4.xml");
+            File newFile = new File("sitemap.xml");
             DocumentBuilderFactory newDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder newBuilder = newDocumentBuilderFactory.newDocumentBuilder();
             Document doc = newBuilder.parse(newFile);
@@ -69,15 +70,15 @@ public class XML {
                             || newNode.getTextContent().toLowerCase().endsWith(".xlsx")) {
                         sumDocuments++;
                     } else if (newNode.getTextContent().contains("")){
-                        rootIdentifier++;
+                       System.out.println("<-------------------------------------<Dynamic Path>------------------------------------------->");
+                        dynamicPaths++;
                     } else {
                         System.out.println(newNode.getFirstChild().getTextContent() 
-                                + "<--------------------------------------------------------------------"
+                                + " <--------------------------------------------------------------------"
                                 + "   ********this might be a null object or something we cannot parse yet ********* ");
                         sumOtherItems++;                       
                     }
                 }                
-                
                 System.out.println(newNode.getTextContent());
             }
         } catch (Exception e) {
@@ -86,14 +87,15 @@ public class XML {
     }
 
     public int calculateResults() {
-        return sumTotal = sumPages + sumDocuments + sumOtherItems;
+        return sumTotal = sumPages + sumDocuments + sumOtherItems + dynamicPaths;
     }
 
     public void printResults() {
+        System.out.println();
         System.out.println("Number of pages: " + sumPages);
         System.out.println("Number of documents: " + sumDocuments);
         System.out.println("Number of other items: " + sumOtherItems);
-        System.out.println("Root identifiers: " + rootIdentifier);
+        System.out.println("Number of dynamic paths: " + dynamicPaths);
         System.out.println("Total number of elements: " + calculateResults());
     }
 }

@@ -28,34 +28,34 @@ public class XML {
 
         try {
             
-            File fXmlFile = new File("sitemap.xml");
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
+            File newFile = new File("sitemap.xml");
+            DocumentBuilderFactory newDocumentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder newBuilder = newDocumentBuilderFactory.newDocumentBuilder();
+            Document doc = newBuilder.parse(newFile);
             doc.getDocumentElement().normalize();
 
-            NodeList nList = doc.getElementsByTagName("loc");
+            NodeList nodeList = doc.getElementsByTagName("loc");
 
             System.out.println("Base element :" + doc.getDocumentElement().getNodeName());
 
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                if (nNode.getChildNodes().toString().contains("loc")) {
-                    if (nNode.getTextContent().endsWith(".html")
-                            || nNode.getTextContent().endsWith(".htm")
-                            || nNode.getTextContent().endsWith(".asp")
-                            || nNode.getTextContent().endsWith(".jsp")
-                            || nNode.getTextContent().endsWith(".php")) {
+            for (int temp = 0; temp < nodeList.getLength(); temp++) {
+                Node newNode = nodeList.item(temp);
+                if (newNode.getChildNodes().toString().contains("loc")) {
+                    if (newNode.getTextContent().endsWith(".html")
+                            || newNode.getTextContent().endsWith(".htm")
+                            || newNode.getTextContent().endsWith(".asp")
+                            || newNode.getTextContent().endsWith(".jsp")
+                            || newNode.getTextContent().endsWith(".php")) {
                         sumPages++;
-                    } else if (nNode.getTextContent().endsWith(".doc")
-                            || nNode.getTextContent().endsWith(".pdf")
-                            || nNode.getTextContent().endsWith(".docx")) {
+                    } else if (newNode.getTextContent().endsWith(".doc")
+                            || newNode.getTextContent().endsWith(".pdf")
+                            || newNode.getTextContent().endsWith(".docx")) {
                         sumDocuments++;
                     } else {
                         sumOtherItems++;
                     }
                 }
-                System.out.println(nNode.getTextContent());
+                System.out.println(newNode.getTextContent());
             }
         } catch (Exception e) {
             System.out.println(e);

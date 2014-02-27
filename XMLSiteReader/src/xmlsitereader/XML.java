@@ -34,6 +34,20 @@ public class XML {
     public String getFileName() {
         return fileName;
     }
+    
+    class URL {
+        
+        String urlPath;
+        boolean isPage;
+        boolean isDocument;
+        boolean isImage;
+        
+        
+        public URL() {
+            
+        }
+        
+    }
    
     public void parseXML() throws FileNotFoundException {
 

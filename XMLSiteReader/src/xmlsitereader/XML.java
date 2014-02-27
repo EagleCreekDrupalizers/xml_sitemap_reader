@@ -75,7 +75,7 @@ public class XML {
                     } else {
                         System.out.println(newNode.getFirstChild().getTextContent() 
                                 + " <--------------------------------------------------------------------"
-                                + "   ********this might be a null object or something we cannot parse yet ********* ");
+                                + " ********this might be a null object or something we cannot parse yet ********* ");
                         sumOtherItems++;                       
                     }
                 }                
